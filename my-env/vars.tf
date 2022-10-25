@@ -1,3 +1,10 @@
+variable "environment_name" {
+  type    = string
+  default = "my-env"
+
+  description = "Environment name"
+}
+
 variable "region" {
   type    = string
   default = "eu-west-1"
@@ -7,7 +14,7 @@ variable "region" {
 
 variable "aws_cred_paths" {
   type    = list(string)
-  default = ["~/.aws/credential"]
+  default = ["~/.aws/credentials"]
 
   description = "List of paths to the shared credentials file"
 }
