@@ -1,15 +1,18 @@
-module "alb" {
-  source = "../modules/alb"
-}
+module "vpc" {
+  source = "../modules/vpc"
 
-module "ec2" {
-  source = "../modules/ec2"
+  environment_name = var.environment_name
+  region           = var.region
 }
 
 module "sg" {
   source = "../modules/sg"
 }
 
-module "vpc" {
-  source = "../modules/vpc"
+module "alb" {
+  source = "../modules/alb"
+}
+
+module "ec2" {
+  source = "../modules/ec2"
 }
