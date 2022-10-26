@@ -26,14 +26,14 @@ resource "aws_route_table" "any_to_ngw" {
 }
 
 resource "aws_route_table_association" "public" {
-  for_each = toset([ for sub_name, v in var.subnets: sub_name if v.public ])
+  for_each = toset([for sub_name, v in var.subnets : sub_name if v.public])
 
   subnet_id      = aws_subnet.this[each.value].id
   route_table_id = aws_default_route_table.default.id
 }
 
 resource "aws_route_table_association" "private" {
-  for_each = toset([ for sub_name, v in var.subnets: sub_name if ! v.public ])
+  for_each = toset([for sub_name, v in var.subnets : sub_name if !v.public])
 
   subnet_id      = aws_subnet.this[each.value].id
   route_table_id = aws_route_table.any_to_ngw.id

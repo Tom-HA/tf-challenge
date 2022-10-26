@@ -7,6 +7,6 @@ resource "aws_subnet" "this" {
   availability_zone       = join("", [var.region, each.value.az])
 
   tags = {
-    Name      = each.key
+    Name = each.key
   }
 }
