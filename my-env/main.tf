@@ -13,6 +13,10 @@ module "sg" {
 
 module "alb" {
   source = "../modules/alb"
+
+  vpc_id     = module.vpc.vpc_id
+  subnet_ids = module.vpc.public_subnet_ids
+  alb_sg_ids = [module.sg.sg_id_load_balancers]
 }
 
 module "ec2" {
