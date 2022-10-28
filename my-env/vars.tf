@@ -31,3 +31,9 @@ variable "aws_account_ids" {
 
   description = "List of allowed AWS account IDs "
 }
+
+variable "user_data_file_path" {
+  type        = string
+  default     = "../scripts/bootstrap.sh"
+  description = "File path of the user data script for the web server instances"
+}
