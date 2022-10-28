@@ -5,7 +5,7 @@ resource "aws_lb" "application" {
   security_groups    = var.alb_sg_ids
   subnets            = var.subnet_ids
 
-  enable_deletion_protection = true
+  enable_deletion_protection = var.enable_deletion_protection
 
   tags = {
     Name        = "application"
