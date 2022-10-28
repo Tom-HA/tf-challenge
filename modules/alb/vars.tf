@@ -41,3 +41,10 @@ variable "web_servers_listeners" {
   description = "List of objects to set multiple listeners for the web servers"
 
 }
+
+variable "enable_deletion_protection" {
+  type    = bool
+  default = false
+
+  description = "Enable of disable deletion protection for the load balancer"
+}
