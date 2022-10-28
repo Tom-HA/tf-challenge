@@ -14,6 +14,12 @@ resource "aws_launch_template" "web_servers" {
     }
   }
 
+  dynamic "iam_instance_profile" {
+    for_each = var.is_ssm_enabled ? [1] : []
+    content {
+      arn = aws_iam_instance_profile.ssm_connection[0].arn
+    }
+  }
   metadata_options {
     http_endpoint               = "enabled"
     http_tokens                 = "required"
