@@ -50,3 +50,9 @@ variable "tg_arns" {
   type        = list(string)
   description = "List of Target Group ARNs to attach the instances"
 }
+
+variable "is_ssm_enabled" {
+  type        = bool
+  default     = true
+  description = "If enabled, resources will be deployed to enable SSM functionality"
+}
