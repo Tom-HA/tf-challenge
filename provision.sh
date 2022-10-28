@@ -51,6 +51,7 @@ terraform_plan() {
     exit 1
   fi
 
+  no_changes=false
   if grep -q "No changes. Your infrastructure matches the configuration." <<< ${plan}; then
     no_changes=true
   fi
@@ -78,6 +79,7 @@ terraform_apply() {
 }
 
 print_output() {
+  echo "Waiting for web server to be available..."
   url="$(terraform output -raw lb_dns_name)"
   if grep -q "No outputs found" <<< ${url}; then
     echo "Could not get Landing page URL"
