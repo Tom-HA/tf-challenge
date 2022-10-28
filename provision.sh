@@ -46,13 +46,21 @@ terraform_init() {
 }
 
 terraform_plan() {
-  if ! terraform plan -out terraform.out; then
+  if ! plan=$(terraform plan -out terraform.out |tee /dev/tty); then
     echo "Failed to create a terraform plan"
     exit 1
+  fi
+
+  if grep -q "No changes. Your infrastructure matches the configuration." <<< ${plan}; then
+    no_changes=true
   fi
 }
 
 terraform_apply() {
+  if $no_changes; then
+    return 0
+  fi
+
   read -p "Would you like to apply the changes [y|n]: " answer
   until [[ ${answer} =~ ^[y|Y]$ ]] || [[ ${answer} =~ ^[n|N]$ ]]; do
     read -p "Would you like to apply the changes [y|n]: " answer
@@ -70,8 +78,23 @@ terraform_apply() {
 }
 
 print_output() {
-  echo "Landing page URL:"
-  terraform output lb_dns_name
+  url="$(terraform output -raw lb_dns_name)"
+  if grep -q "No outputs found" <<< ${url}; then
+    echo "Could not get Landing page URL"
+    exit 1
+  fi
+  
+  counter=0
+  until curl -Lsf $url &> /dev/null; do
+    if [[ ${counter} -ge 60 ]]; then
+      echo "Failed to get landing page URL"
+      exit 1
+    fi
+    sleep 5
+    (( counter++ ))
+  done
+  printf "Landing page URL:\n%s\n" ${url}
+
 }
 
 main
