@@ -16,6 +16,7 @@ provider "aws" {
     tags = {
       Environment   = var.environment_name
       Department    = "DevOps"
+      Owner         = "Tom H."
       ProvisionedBy = "Terraform"
     }
   }
