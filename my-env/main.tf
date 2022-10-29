@@ -26,4 +26,5 @@ module "ec2" {
   web_servers_subnet_ids = module.vpc.private_subnet_ids
   web_servers_sg_ids     = [module.sg.sg_id_web_servers]
   tg_arns                = [module.alb.tg_arn_web_servers]
+  is_ssm_enabled         = var.is_ssm_enabled
 }
