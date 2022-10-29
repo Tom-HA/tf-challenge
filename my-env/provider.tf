@@ -18,6 +18,7 @@ provider "aws" {
       Department    = "DevOps"
       Owner         = "Tom H."
       ProvisionedBy = "Terraform"
+      Temp          = "True"
     }
   }
 }
