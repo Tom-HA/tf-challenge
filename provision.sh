@@ -19,6 +19,9 @@ check_terraform() {
 handle_variables() {
   read -p "Please enter environment folder name [my-env]: " environment_name
   if [[ -z ${environment_name} ]]; then environment_name=my-env; fi
+  
+  read -p "Please enter AWS region [eu-west-1]: " region
+  if [[ -n ${region} ]]; then export TF_VAR_region=${region}; fi
 
   read -p "Please enter a list of AWS credential paths [~/.aws/credentials]: " aws_cred_paths
   if [[ -n ${aws_cred_paths} ]]; then export TF_VAR_aws_cred_paths=${aws_cred_paths}; fi
