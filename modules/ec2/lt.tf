@@ -32,7 +32,10 @@ resource "aws_launch_template" "web_servers" {
     tags = {
       Name          = "web-server"
       Description   = "Host the web server"
+      Department    = "DevOps"
+      Owner         = "Tom H."
       ProvisionedBy = "web-servers ASG"
+      Temp          = "True"
     }
   }
 
@@ -42,7 +45,10 @@ resource "aws_launch_template" "web_servers" {
     tags = {
       Name          = "web-server"
       Description   = "Volume for the web server instance"
+      Owner         = "Tom H."
+      Department    = "DevOps"
       ProvisionedBy = "web-servers ASG"
+      Temp          = "True"
     }
   }
 

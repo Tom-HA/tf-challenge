@@ -37,3 +37,9 @@ variable "user_data_file_path" {
   default     = "../scripts/bootstrap.sh"
   description = "File path of the user data script for the web server instances"
 }
+
+variable "is_ssm_enabled" {
+  type        = bool
+  default     = false
+  description = "If enabled, IAM resources will be deployed to enable SSM functionality"
+}
