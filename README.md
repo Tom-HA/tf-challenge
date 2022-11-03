@@ -9,6 +9,8 @@ When executed, you will be asked to enter the following information:
 
 - An environment folder name
 
+- AWS region
+
 - List of AWS credential paths
 
 - AWS profile
